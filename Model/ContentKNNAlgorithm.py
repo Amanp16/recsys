@@ -33,7 +33,7 @@ class ContentKNNAlgorithm(AlgoBase):
             
         # Compute genre distance for every movie combination as a 2x2 matrix
         self.similarities = np.zeros((self.trainset.n_items, self.trainset.n_items))
-        
+        print("Using mesSimilarity")
         for thisRating in range(self.trainset.n_items):
             if (thisRating % 100 == 0):
                 print(thisRating, " of ", self.trainset.n_items)
@@ -42,8 +42,11 @@ class ContentKNNAlgorithm(AlgoBase):
                 otherMovieID = int(self.trainset.to_raw_iid(otherRating))
                 genreSimilarity = self.computeGenreSimilarity(thisMovieID, otherMovieID, genres)
                 yearSimilarity = self.computeYearSimilarity(thisMovieID, otherMovieID, years)
-                #mesSimilarity = self.computeMiseEnSceneSimilarity(thisMovieID, otherMovieID, mes)
-                self.similarities[thisRating, otherRating] = genreSimilarity * yearSimilarity
+                mesSimilarity = self.computeMiseEnSceneSimilarity(thisMovieID, otherMovieID, mes)
+                self.similarities[thisRating, otherRating] = genreSimilarity * yearSimilarity * mesSimilarity
+                # self.similarities[thisRating, otherRating] = genreSimilarity
+                # self.similarities[thisRating, otherRating] = yearSimilarity
+                # self.similarities[thisRating, otherRating] = mesSimilarity
                 self.similarities[otherRating, thisRating] = self.similarities[thisRating, otherRating]
                 
         print("...done.")

@@ -118,7 +118,7 @@ class MovieLens:
     
     def getMiseEnScene(self): #new ways of recommendation inc;uding more features
         mes = defaultdict(list)
-        with open("'../dataset/LLVisualFeatures13K_Log.csv'", newline='') as csvfile:
+        with open("../dataset/LLVisualFeatures13K_Log.csv", newline='') as csvfile:
             mesReader = csv.reader(csvfile)
             next(mesReader)
             for row in mesReader:
