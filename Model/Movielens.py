@@ -13,8 +13,8 @@ class MovieLens:
 
     movieID_to_name = {}
     name_to_movieID = {}
-    ratingsPath = '../ml-latest-small/ratings.csv' # ratings data
-    moviesPath = '../ml-latest-small/movies.csv'   #movies data
+    ratingsPath = '../dataset/ratings.csv' # ratings data
+    moviesPath = '../dataset/movies.csv'   #movies data
     def loadMovieLensLatestSmall(self):
 
         # Look for files relative to the directory we are running from
